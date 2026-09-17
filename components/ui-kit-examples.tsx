@@ -1,5 +1,6 @@
 "use client";
 
+import { toast } from "sonner";
 import { useState, type FormEvent } from "react";
 import {
   CheckIcon,
@@ -31,7 +32,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Notice, Panel } from "@/components/btcp/primitives";
 
 const installCommand =
-  "npx shadcn@latest add https://raw.githubusercontent.com/JoshMayerr/btcp-ui/v0.2.0/public/r/btcp-ui.json";
+  "npx shadcn@latest add https://raw.githubusercontent.com/JoshMayerr/btcp-ui/v0.3.0/public/r/btcp-ui.json";
 
 export function InstallKit() {
   const [copied, setCopied] = useState(false);
@@ -117,6 +118,20 @@ export function InteractiveExamples() {
   }
   return (
     <>
+      <div className="flex gap-2">
+        <Button
+          variant="outline"
+          onClick={() => toast.error("Could not save. Please retry.")}
+        >
+          Show error toast
+        </Button>
+        <Button
+          variant="outline"
+          onClick={() => toast.success("Changes saved.")}
+        >
+          Show success toast
+        </Button>
+      </div>
       <div className="grid gap-5 xl:grid-cols-2">
         <Panel
           title="Buttons"

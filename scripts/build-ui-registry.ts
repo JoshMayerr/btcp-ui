@@ -15,6 +15,7 @@ const dependencyNames = [
   "clsx",
   "tailwind-merge",
   "tw-animate-css",
+  "sonner",
 ];
 
 async function components(directory: string): Promise<string[]> {
