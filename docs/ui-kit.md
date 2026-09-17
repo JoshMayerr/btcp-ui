@@ -8,7 +8,7 @@ Use a React 19, Next.js, Tailwind CSS 4 project with shadcn configured. Initiali
 
 ```sh
 npx shadcn@latest init
-npx shadcn@latest add https://raw.githubusercontent.com/JoshMayerr/btcp-ui/v0.3.0/public/r/btcp-ui.json
+npx shadcn@latest add https://raw.githubusercontent.com/JoshMayerr/btcp-ui/v0.4.0/public/r/btcp-ui.json
 ```
 
 Review overwrite prompts if the app already has customized shadcn components. This installs source into your configured UI, components, and library directories. The theme goes to `styles/btcp-theme.css` at the project root. Application routes, database access, notification actions, and credentials are excluded.
@@ -70,7 +70,7 @@ Prefer semantic classes such as `bg-background`, `bg-card`, `text-foreground`, `
 
 ## Distribution and versioning
 
-Current kit version: **0.3.0**. Source: `JoshMayerr/btcp-ui`, in `components/ui`, `components/btcp`, `lib/utils.ts`, and `styles/btcp-theme.css`.
+Current kit version: **0.4.0**. Source: `JoshMayerr/btcp-ui`, in `components/ui`, `components/btcp`, `lib/utils.ts`, and `styles/btcp-theme.css`.
 
 Run `npx tsx scripts/build-ui-registry.ts` after editing shared source. The script discovers all TSX files in the two component directories and emits `public/r/btcp-ui.json` with embedded source plus a root `registry.json` index. The item includes `meta.version` and a deterministic `meta.sourceHash` covering source and dependencies, so copied installations can record exactly which kit snapshot they use. Bump the version in package.json when releasing changes to consumers.
 
@@ -81,3 +81,14 @@ Registry file targets use shadcn's configured-directory placeholders. The theme 
 ## Toasts
 
 Mount `<Toaster />` from `@/components/ui/sonner` once in your root layout. In client components, import `{ toast }` from `sonner` and call `toast.error("Could not save. Please retry.")` or `toast.success("Saved.")`. The kit supplies Phosphor icons, theme tokens, a close button, and a six-second default duration. Keep persistent failures visible near the affected content as well.
+
+## Nested navigation and search
+
+AppShell includes a navigation search field. A navigation entry is either a link (`label`, `icon`, `href`) or a collapsible parent (`label`, `icon`, `children`). Children accept the same shape, so groups can nest. Search keeps matching ancestors visible and reveals matching descendants. Escape clears the search; buttons and links support normal keyboard navigation. Shell chrome is minimal by default; supply `footer` for app-specific status.
+
+```tsx
+const navigation = [{ label: "Notifications", icon: "notifications", children: [
+  { label: "Overview", href: "/", icon: "overview" },
+  { label: "Watchlist", href: "/?view=watchlist", icon: "people" },
+] }];
+```

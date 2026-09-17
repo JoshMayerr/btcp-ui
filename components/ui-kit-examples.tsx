@@ -32,7 +32,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Notice, Panel } from "@/components/btcp/primitives";
 
 const installCommand =
-  "npx shadcn@latest add https://raw.githubusercontent.com/JoshMayerr/btcp-ui/v0.3.0/public/r/btcp-ui.json";
+  "npx shadcn@latest add https://raw.githubusercontent.com/JoshMayerr/btcp-ui/v0.4.0/public/r/btcp-ui.json";
 
 export function InstallKit() {
   const [copied, setCopied] = useState(false);

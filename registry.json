@@ -101,6 +101,11 @@
           "target": "@components/btcp/app-shell.tsx"
         },
         {
+          "path": "components/btcp/navigation.tsx",
+          "type": "registry:component",
+          "target": "@components/btcp/navigation.tsx"
+        },
+        {
           "path": "components/btcp/primitives.tsx",
           "type": "registry:component",
           "target": "@components/btcp/primitives.tsx"
@@ -123,8 +128,8 @@
       ],
       "docs": "Import styles/btcp-theme.css at the top of your global stylesheet after the Tailwind import; reconcile existing theme declarations so they do not override BTCP tokens. See docs/ui-kit.md in the source repository. This kit installs shared UI source only; bring your own routes and data.",
       "meta": {
-        "version": "0.3.0",
-        "sourceHash": "8c5b19a6855d1a170b535e292eb786e623fef4590b1d697a4b96272787c658e6",
+        "version": "0.4.0",
+        "sourceHash": "f1afba0368035974a40a6ca5cab1223486f0f06404919062d8158d40d9423d99",
         "source": "JoshMayerr/btcp-ui"
       }
     }

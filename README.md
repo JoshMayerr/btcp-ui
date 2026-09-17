@@ -9,7 +9,7 @@ This repository is the source of truth. It includes components, design tokens, a
 In a shadcn-ready Next.js / React 19 / Tailwind 4 application:
 
 ```sh
-npx shadcn@latest add https://raw.githubusercontent.com/JoshMayerr/btcp-ui/v0.3.0/public/r/btcp-ui.json
+npx shadcn@latest add https://raw.githubusercontent.com/JoshMayerr/btcp-ui/v0.4.0/public/r/btcp-ui.json
 ```
 
 Follow [the installation guide](docs/ui-kit.md) to import the theme and font. Consumers own installed source copies, following the shadcn model; updates are deliberate installs and reviewed diffs.
@@ -35,6 +35,6 @@ Edit `components/ui`, `components/btcp`, and `styles/btcp-theme.css`. Gallery ex
 
 For a release, bump package.json version, update example install URLs, regenerate the registry, and commit generated JSON. Tag that commit v<version> and push the tag after checks pass. Pinned raw GitHub URLs work without hosting the gallery. CI checks registry/source consistency.
 
-Genesis Notifications retains an installed copy of v0.3.0 and its compatibility registry endpoint. Shared changes should originate here.
+Genesis Notifications retains an installed copy of v0.4.0 and its compatibility registry endpoint. Shared changes should originate here.
 
 MIT licensed; see THIRD_PARTY_NOTICES.md for shadcn/ui attribution. This is a BTCP implementation and contains no Cloudflare logos or assets.
