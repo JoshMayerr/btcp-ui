@@ -8,7 +8,7 @@ Use a React 19, Next.js, Tailwind CSS 4 project with shadcn configured. Initiali
 
 ```sh
 npx shadcn@latest init
-npx shadcn@latest add https://raw.githubusercontent.com/JoshMayerr/btcp-ui/v0.1.0/public/r/btcp-ui.json
+npx shadcn@latest add https://raw.githubusercontent.com/JoshMayerr/btcp-ui/v0.2.0/public/r/btcp-ui.json
 ```
 
 Review overwrite prompts if the app already has customized shadcn components. This installs source into your configured UI, components, and library directories. The theme goes to `styles/btcp-theme.css` at the project root. Application routes, database access, notification actions, and credentials are excluded.
@@ -28,7 +28,7 @@ The registry installs `@fontsource-variable/inter`, `@phosphor-icons/react`, `ra
 
 ## Components and tokens
 
-Use `components/ui` for the familiar shadcn Button, Input, Badge, Card, Table, Label, Separator, Dialog, Tabs, and Select APIs. Use `components/btcp` for shared application layout and presentation primitives. Import `cn` from `lib/utils` to merge utility classes.
+Use `components/ui` for the familiar shadcn Button, Input, Badge, Card, Table, Label, Separator, Dialog, Tabs, Select, Sidebar, Sheet, Tooltip, and Skeleton APIs. Use `components/btcp` for shared application layout and presentation primitives. Import `cn` from `lib/utils` to merge utility classes.
 
 The BTCP layer exposes these reusable pieces:
 
@@ -42,7 +42,7 @@ The BTCP layer exposes these reusable pieces:
 | `EmptyState`  | Empty content message and action                | `title`, `description`, `icon`, `action`, `compact`                                                                  |
 | `Notice`      | Informational or error message                  | `children`, `tone`: `info`, `warning`, or `error`                                                                    |
 
-Navigation items accept `label`, `href`, `icon`, and optional `group`. Supported icon keys are `overview`, `notifications`, `people`, `activity`, `email`, `kit`, and `docs`. The shell does not fetch data or enforce authentication.
+Navigation items accept `label`, `href`, `icon`, and optional `group`. Supported icon keys are `overview`, `notifications`, `people`, `activity`, `email`, `kit`, and `docs`. The shell uses shadcn SidebarProvider, Sidebar, and SidebarTrigger for a 200 ms desktop slide and responsive Sheet drawer. Desktop transitions respect reduced-motion preferences. Mobile navigation closes after selecting a link. The shell does not fetch data or enforce authentication.
 
 ```tsx
 import { Panel, PageHeader, StatusBadge } from "@/components/btcp/primitives";
@@ -70,7 +70,7 @@ Prefer semantic classes such as `bg-background`, `bg-card`, `text-foreground`, `
 
 ## Distribution and versioning
 
-Current kit version: **0.1.0**. Source: `JoshMayerr/btcp-ui`, in `components/ui`, `components/btcp`, `lib/utils.ts`, and `styles/btcp-theme.css`.
+Current kit version: **0.2.0**. Source: `JoshMayerr/btcp-ui`, in `components/ui`, `components/btcp`, `lib/utils.ts`, and `styles/btcp-theme.css`.
 
 Run `npx tsx scripts/build-ui-registry.ts` after editing shared source. The script discovers all TSX files in the two component directories and emits `public/r/btcp-ui.json` with embedded source plus a root `registry.json` index. The item includes `meta.version` and a deterministic `meta.sourceHash` covering source and dependencies, so copied installations can record exactly which kit snapshot they use. Bump the version in package.json when releasing changes to consumers.
 

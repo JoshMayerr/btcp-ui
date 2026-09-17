@@ -83,7 +83,7 @@ export default function UIKitPage() {
       breadcrumb="UI kit"
     >
       <PageHeader
-        eyebrow="BTCP design system / v0.1.0"
+        eyebrow="BTCP design system / v0.2.0"
         title="One kit. Every deployment."
         description="A shared foundation for our internal tools. Familiar console patterns, compact layouts, and components you can make your own."
         actions={

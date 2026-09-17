@@ -1,5 +1,5 @@
 "use client";
-import { useState, type ReactNode } from "react";
+import { type ReactNode, type CSSProperties, type ComponentProps } from "react";
 import {
   SquaresFourIcon,
   BellIcon,
@@ -9,17 +9,15 @@ import {
   StackIcon,
   BookOpenIcon,
   CaretRightIcon,
-  SidebarSimpleIcon,
   ArrowUpRightIcon,
   CubeIcon,
 } from "@phosphor-icons/react";
-import { Button } from "@/components/ui/button";
 import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
+  Sidebar,
+  SidebarProvider,
+  SidebarTrigger,
+  useSidebar,
+} from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 const icons = {
   overview: SquaresFourIcon,
@@ -36,7 +34,7 @@ export type NavItem = {
   icon: keyof typeof icons;
   group?: string;
 };
-export function AppShell({
+function ShellContent({
   children,
   brand = "BTCP",
   workspace = "Deployments",
@@ -57,8 +55,7 @@ export function AppShell({
   footer?: ReactNode;
   docsHref?: string;
 }) {
-  const [mobile, setMobile] = useState(false);
-  const [collapsed, setCollapsed] = useState(false);
+  const { setOpenMobile: setMobile } = useSidebar();
   const nav = (
     <>
       <a
@@ -84,7 +81,10 @@ export function AppShell({
           </p>
         </div>
       </div>
-      <nav aria-label="Main navigation" className="px-3">
+      <nav
+        aria-label="Main navigation"
+        className="flex-1 overflow-y-auto px-3 pb-4"
+      >
         {navigation.map((item, i) => {
           const Icon = icons[item.icon];
           return (
@@ -132,51 +132,21 @@ export function AppShell({
     </>
   );
   return (
-    <div className="min-h-screen">
+    <>
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-white focus:p-3"
       >
         Skip to content
       </a>
-      <aside
-        className={cn(
-          "fixed inset-y-0 left-0 z-30 hidden w-[232px] flex-col border-r bg-sidebar lg:flex",
-          collapsed && "lg:hidden",
-        )}
-      >
+      <Sidebar collapsible="offcanvas" className="overflow-hidden">
+        <SidebarTrigger className="absolute right-2 top-2 md:hidden" />
         {nav}
-      </aside>
-      <Dialog open={mobile} onOpenChange={setMobile}>
-        <DialogContent className="left-0 top-0 h-dvh w-[280px] max-w-[85vw] translate-x-0 translate-y-0 gap-0 rounded-none border-y-0 p-0 sm:max-w-[280px]">
-          <DialogTitle className="sr-only">Navigation</DialogTitle>
-          <DialogDescription className="sr-only">
-            Workspace navigation
-          </DialogDescription>
-          <div className="flex h-full flex-col bg-sidebar">{nav}</div>
-        </DialogContent>
-      </Dialog>
-      <div className={cn(!collapsed && "lg:pl-[232px]")}>
+      </Sidebar>
+      <div className="min-w-0 flex-1">
         <header className="flex h-14 items-center justify-between border-b bg-white px-4 md:px-7">
           <div className="flex min-w-0 items-center gap-3">
-            <Button
-              variant="ghost"
-              size="icon-sm"
-              aria-label="Open navigation"
-              className="lg:hidden"
-              onClick={() => setMobile(true)}
-            >
-              <SidebarSimpleIcon />
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon-sm"
-              aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-              className="hidden lg:flex"
-              onClick={() => setCollapsed(!collapsed)}
-            >
-              <SidebarSimpleIcon />
-            </Button>
+            <SidebarTrigger />
             <span className="truncate text-xs text-muted-foreground">
               {project}
             </span>
@@ -200,6 +170,14 @@ export function AppShell({
           {children}
         </main>
       </div>
-    </div>
+    </>
+  );
+}
+
+export function AppShell(props: ComponentProps<typeof ShellContent>) {
+  return (
+    <SidebarProvider style={{ "--sidebar-width": "232px" } as CSSProperties}>
+      <ShellContent {...props} />
+    </SidebarProvider>
   );
 }

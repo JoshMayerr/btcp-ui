@@ -60,6 +60,21 @@
           "target": "@ui/separator.tsx"
         },
         {
+          "path": "components/ui/sheet.tsx",
+          "type": "registry:ui",
+          "target": "@ui/sheet.tsx"
+        },
+        {
+          "path": "components/ui/sidebar.tsx",
+          "type": "registry:ui",
+          "target": "@ui/sidebar.tsx"
+        },
+        {
+          "path": "components/ui/skeleton.tsx",
+          "type": "registry:ui",
+          "target": "@ui/skeleton.tsx"
+        },
+        {
           "path": "components/ui/table.tsx",
           "type": "registry:ui",
           "target": "@ui/table.tsx"
@@ -68,6 +83,11 @@
           "path": "components/ui/tabs.tsx",
           "type": "registry:ui",
           "target": "@ui/tabs.tsx"
+        },
+        {
+          "path": "components/ui/tooltip.tsx",
+          "type": "registry:ui",
+          "target": "@ui/tooltip.tsx"
         },
         {
           "path": "components/btcp/app-shell.tsx",
@@ -85,6 +105,11 @@
           "target": "@lib/utils.ts"
         },
         {
+          "path": "hooks/use-mobile.ts",
+          "type": "registry:hook",
+          "target": "@hooks/use-mobile.ts"
+        },
+        {
           "path": "styles/btcp-theme.css",
           "type": "registry:file",
           "target": "~/styles/btcp-theme.css"
@@ -92,8 +117,8 @@
       ],
       "docs": "Import styles/btcp-theme.css at the top of your global stylesheet after the Tailwind import; reconcile existing theme declarations so they do not override BTCP tokens. See docs/ui-kit.md in the source repository. This kit installs shared UI source only; bring your own routes and data.",
       "meta": {
-        "version": "0.1.0",
-        "sourceHash": "96e0739ee8a594941fdab822075fe058790ab38afaf0621924305984026a1a5d",
+        "version": "0.2.0",
+        "sourceHash": "aae0c236c005610934093e22e72b9d4de341020a7c6306c93b4ec020e41c22a5",
         "source": "JoshMayerr/btcp-ui"
       }
     }

@@ -38,6 +38,7 @@ const paths = [
   ...(await components("components/ui")),
   ...(await components("components/btcp")),
   "lib/utils.ts",
+  "hooks/use-mobile.ts",
   "styles/btcp-theme.css",
 ];
 const files = await Promise.all(
@@ -46,16 +47,20 @@ const files = await Promise.all(
       ? "registry:ui"
       : source.startsWith("components/")
         ? "registry:component"
-        : source.startsWith("lib/")
-          ? "registry:lib"
-          : "registry:file";
+        : source.startsWith("hooks/")
+          ? "registry:hook"
+          : source.startsWith("lib/")
+            ? "registry:lib"
+            : "registry:file";
     const target = source.startsWith("components/ui/")
       ? source.replace("components/ui/", "@ui/")
       : source.startsWith("components/")
         ? source.replace("components/", "@components/")
-        : source.startsWith("lib/")
-          ? source.replace("lib/", "@lib/")
-          : `~/${source}`;
+        : source.startsWith("hooks/")
+          ? source.replace("hooks/", "@hooks/")
+          : source.startsWith("lib/")
+            ? source.replace("lib/", "@lib/")
+            : `~/${source}`;
     return {
       path: source,
       type,
